@@ -311,7 +311,7 @@ export class GenericComponent extends React.Component<GenericComponentProps, Gen
         }
     }
 
-    public UNSAFE_componentWillMount() {
+    public _componentWillMount() {
         const { subscribe, chartId } = this.context;
         const { clip, edgeClip } = this.props;
 
@@ -324,7 +324,7 @@ export class GenericComponent extends React.Component<GenericComponentProps, Gen
             getPanConditions: this.getPanConditions,
         });
 
-        this.UNSAFE_componentWillReceiveProps(this.props, this.context);
+        this._componentWillReceiveProps(this.props, this.context);
     }
 
     public componentWillUnmount() {
@@ -337,6 +337,7 @@ export class GenericComponent extends React.Component<GenericComponentProps, Gen
     }
 
     public componentDidMount() {
+        this._componentWillMount()
         this.componentDidUpdate(this.props);
     }
 
@@ -359,7 +360,7 @@ export class GenericComponent extends React.Component<GenericComponentProps, Gen
         }
     }
 
-    public UNSAFE_componentWillReceiveProps(nextProps: GenericComponentProps, nextContext: any) {
+    public _componentWillReceiveProps(nextProps: GenericComponentProps, nextContext: any) {
         const { xScale, plotData, chartConfig, getMutableState } = nextContext;
 
         this.moreProps = {
